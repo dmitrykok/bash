@@ -536,12 +536,16 @@ fi
 if [[ -d "$HOME/.rvm" ]]; then
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
   export PATH="$PATH:$HOME/.rvm/bin"
+elif [[ -s "/etc/profile.d/rvm.sh" ]]; then
+  source /etc/profile.d/rvm.sh
 else
   echo "RVM not installed"
   echo "sudo apt install software-properties-common"
   echo "sudo apt-add-repository -y ppa:rael-gc/rvm"
   echo "sudo apt update"
   echo "sudo apt install rvm"
+  echo "sudo usermod -aG rvm $USER"
+  echo "newgrp rvm"
   echo "for older linux distros, see https://rvm.io/rvm/install"
   echo "curl -sSL https://get.rvm.io | bash"
   echo ""
