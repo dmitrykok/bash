@@ -262,6 +262,7 @@ if [[ -s "/etc/grc.zsh" ]]; then
 else
   echo "grc not installed"
   echo "sudo apt -y install grc"
+  echo ""
 fi
 
 lazygit() {
@@ -549,7 +550,7 @@ fi
 if [[ -d "$HOME/.rbenv" ]]; then
   export RBENV_ROOT="$HOME/.rbenv"
   export PATH="$RBENV_ROOT/bin:$PATH"
-  eval "$($RBENV_ROOT/bin/rbenv init - bash)"
+  eval "$(rbenv init - bash)"
 else
   echo "rbenv not installed"
   echo "sudo apt -y install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev"
