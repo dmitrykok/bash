@@ -744,7 +744,7 @@ set_prompt_char() {
         "CentOS") __PROMPT_CHAR="" ;;
         "Arch") __PROMPT_CHAR="" ;;  # Note: "Arch" as hostnamectl returns "Arch"
         "Gentoo") __PROMPT_CHAR="" ;;
-        "Red") __PROMPT_CHAR="" ;;    # Note: "Red" for "Red Hat"
+        "Red") __PROMPT_CHAR="󱄛" ;;    # Note: "Red" for "Red Hat"
         "ManjaroLinux") __PROMPT_CHAR="" ;;
         *) __PROMPT_CHAR="" ;;
     esac
