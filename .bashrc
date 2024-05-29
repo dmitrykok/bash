@@ -254,11 +254,11 @@ convert_zsh_to_bash() {
 
 GRC_ALIASES=true
 if [[ -s "/etc/grc.zsh" ]]; then
-  if [[ ! -s $HOME/.local/sbin/grc.sh ]]; then
-    convert_zsh_to_bash /etc/grc.zsh $HOME/.local/sbin/grc.sh
-    chmod +x $HOME/.local/sbin/grc.sh
+  if [[ ! -s $HOME/.bash/grc.sh ]]; then
+    convert_zsh_to_bash /etc/grc.zsh $HOME/.bash/grc.sh
+    chmod +x $HOME/.bash/grc.sh
   fi
-  source $HOME/.local/sbin/grc.sh
+  source $HOME/.bash/grc.sh
 else
   echo "grc not installed"
   echo "sudo apt -y install grc"
