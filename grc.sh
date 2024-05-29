@@ -31,7 +31,7 @@ if [[ "$TERM" != dumb ]] && command -v grc &> /dev/null ; then
   # Set alias for available commands.
   for cmd in "${cmds[@]}"; do
     if command -v $cmd &> /dev/null ; then
-      unalias $cmd
+      unalias $cmd 2>/dev/null
       alias $cmd="grc --colour=auto $(command -v $cmd)"
     fi
   done
