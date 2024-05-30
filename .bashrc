@@ -189,10 +189,11 @@ fi
 # alias ohmybash="mate $HOME/.oh-my-bash"
 # Example aliases
 alias bashconfig='source $HOME/.bashrc'
-alias bashupdate='upgrade_oh_my_bash && source $HOME/.bashrc'
+alias bashupdate='git -C $HOME/.bash/ pull && source $HOME/.bashrc'
 alias ohmybash='source $HOME/.oh-my-bash'
 alias osrelease='hostnamectl'
-alias ohupdate='git -C $HOME/.oh-my-bash pull && source $HOME/.bashrc'
+alias ohupdate='upgrade_oh_my_bash && source $HOME/.bashrc'
+alias binupdate='git -C $HOME/.local/sbin/ pull'
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -746,7 +747,7 @@ set_prompt_char() {
     # Set the chassis-specific icon
     case "$chassis_info" in
         "laptop" | "notebook" | "portable" | "desktop")
-            __CHASSIS_CHAR=""
+            __CHASSIS_CHAR="󰹑"
             ;;
         *)
             case "$virtualization_info" in
@@ -762,8 +763,8 @@ set_prompt_char() {
     case "$os_info" in
         "Ubuntu") __PROMPT_CHAR="" ;;
         "Debian") __PROMPT_CHAR="" ;;
-        "Fedora") __PROMPT_CHAR="" ;;
-        "CentOS") __PROMPT_CHAR="" ;;
+        "Fedora") __PROMPT_CHAR="" ;;
+        "CentOS") __PROMPT_CHAR="" ;;
         "Arch") __PROMPT_CHAR="" ;;  # Note: "Arch" as hostnamectl returns "Arch"
         "Gentoo") __PROMPT_CHAR="" ;;
         "Red") __PROMPT_CHAR="󱄛" ;;    # Note: "Red" for "Red Hat"
