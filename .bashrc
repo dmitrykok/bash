@@ -504,10 +504,22 @@ alias la='ls -A'
 alias l='ls -CF'
 
 if command -v colorls 1>/dev/null 2>&1; then
-  alias ll='colorls -laA --sd --gs --df --report=long'
-  alias la='colorls -laA --sd --gs --df --report=long -1'
-  alias ls='colorls -aA --sd --df'
-  alias l='colorls --sd --df'
+  # Get colorls version
+  COLORLS_VERSION=$(colorls --version)
+
+  # Check if the version is 1.5.0
+  if [ "$COLORLS_VERSION" = "1.5.0" ]; then
+    alias ll='colorls -laA --sd --gs --df --report=long'
+    alias la='colorls -laA --sd --gs --df --report=long -1'
+    alias ls='colorls -aA --sd --df'
+    alias l='colorls --sd --df'
+  else
+    alias ll='colorls -laA --sd --gs --report=long'
+    alias la='colorls -laA --sd --gs --report=long -1'
+    alias ls='colorls -aA --sd'
+    alias l='colorls --sd'
+  fi
+
   source $(dirname $(gem which colorls))/tab_complete.sh
 else
   echo "colorls not installed, falling back to ls -laFh"
