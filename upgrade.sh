@@ -3,6 +3,18 @@
 function _dot_files_bush_upgrade {
     # Use colors, but only if connected to a terminal, and that terminal
     # supports them.
+
+    # Fetch the latest changes from the remote repository
+    git --git-dir="$HOME/.bash/.git" --work-tree="$HOME/.bash" fetch
+
+    # Check if there are new commits in the remote repository
+    LOCAL=$(git --git-dir="$HOME/.bash/.git" --work-tree="$HOME/.bash" rev-parse @)
+    REMOTE=$(git --git-dir="$HOME/.bash/.git" --work-tree="$HOME/.bash" rev-parse @{u})
+
+    if [ "$LOCAL" = "$REMOTE" ]; then
+        return
+    fi
+
     local ncolors=
     if type -P tput &>/dev/null; then
         ncolors=$(tput colors)
