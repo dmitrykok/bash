@@ -3,6 +3,11 @@
 function _dot_files_bush_upgrade {
     # Use colors, but only if connected to a terminal, and that terminal
     # supports them.
+    if [[ -f "$HOME/.bash/.lock" ]]; then
+        return
+    fi
+
+    touch "$HOME/.bash/.lock"
 
     # Fetch the latest changes from the remote repository
     git --git-dir="$HOME/.bash/.git" --work-tree="$HOME/.bash" fetch
@@ -49,16 +54,18 @@ function _dot_files_bush_upgrade {
             'There was an error updating.' \
             "If you have uncommited changes in '$BOLD$HOME/.bash$NORMAL$RED', please commit, stash or discard them and retry updating." \
             "If you have your own local commits in '$BOLD$HOME/.bash$NORMAL$RED' that conflict with the upstream changes, please resolve conflicts and merge the upstream manually."
+        rm -f "$HOME/.bash/.lock"
         return 1
     fi
 
-    # printf '%s\n' "$GREEN"
+    printf '%s\n' "$NORMAL"
     # shellcheck disable=SC1003,SC2016
     if command -v pyfiglet 1>/dev/null 2>&1; then
         pyfiglet -f poison -w 80 -c GREEN "Dot Files for Bash"
     fi
     printf "${BLUE}%s\n" "Hooray! Dot Files for Bash has been updated and/or is at the current version."
     printf "${BLUE}${BOLD}%s${NORMAL}\n" "To keep up on the latest news and updates, follow us on Git: https://bitbucket.ultracruise.gm.com/scm/~mzw7p2/bash"
+    rm -f "$HOME/.bash/.lock"
     $HOME/.bash/setup.sh
 }
 _dot_files_bush_upgrade
