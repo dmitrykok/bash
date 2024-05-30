@@ -745,7 +745,10 @@ function auto_activate_venv() {
     fi
 }
 
-export PROMPT_COMMAND="auto_activate_venv; local_history; $PROMPT_COMMAND"
+if [[ -z "$__PROMPT_COMMAND_ADDED" ]]; then
+  export __PROMPT_COMMAND_ADDED=1
+  export PROMPT_COMMAND="auto_activate_venv; local_history; $PROMPT_COMMAND"
+fi
 
 set_prompt_char() {
     local os_info=$(hostnamectl | grep "Operating System" | awk -F ': ' '{print $2}' | awk '{print $1}')
