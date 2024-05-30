@@ -32,7 +32,7 @@ if command -v vim 1>/dev/null 2>&1; then
     alias vi='vim'
 else
     echo "vim not installed"
-    echo "sudo apt -y install biosyntax-vim cream dh-vim-addon geany-plugin-vimode libghc-yi-keymap-vim-dev libghc-yi-keymap-vim-doc libghc-yi-keymap-vim-prof neovim neovim-qt neovim-runtime notmuch-vim pacvim supercollider-vim vim vim-addon-manager vim-addon-mw-utils vim-airline vim-airline-themes vim-athena vim-autopep8 vim-bitbake vim-command-t vim-common vim-ctrlp vim-doc vim-fugitive vim-gtk3 vim-gui-common vim-haproxy vim-icinga2 vim-julia vim-khuno vim-lastplace vim-latexsuite vim-ledger vim-migemo vim-nox vim-pathogen vim-puppet vim-python-jedi vim-rails vim-runtime vim-scripts vim-snipmate vim-snippets vim-syntastic vim-syntax-gtk vim-tabular vim-textobj-user vim-tiny vim-tjp vim-tlib vim-vimerl vim-vimerl-syntax vim-voom vim-youcompleteme"
+    echo "sudo -EH apt -y install biosyntax-vim cream dh-vim-addon geany-plugin-vimode libghc-yi-keymap-vim-dev libghc-yi-keymap-vim-doc libghc-yi-keymap-vim-prof neovim neovim-qt neovim-runtime notmuch-vim pacvim supercollider-vim vim vim-addon-manager vim-addon-mw-utils vim-airline vim-airline-themes vim-athena vim-autopep8 vim-bitbake vim-command-t vim-common vim-ctrlp vim-doc vim-fugitive vim-gtk3 vim-gui-common vim-haproxy vim-icinga2 vim-julia vim-khuno vim-lastplace vim-latexsuite vim-ledger vim-migemo vim-nox vim-pathogen vim-puppet vim-python-jedi vim-rails vim-runtime vim-scripts vim-snipmate vim-snippets vim-syntastic vim-syntax-gtk vim-tabular vim-textobj-user vim-tiny vim-tjp vim-tlib vim-vimerl vim-vimerl-syntax vim-voom vim-youcompleteme"
     echo ""
 fi
 
@@ -64,8 +64,8 @@ if command -v colorls 1>/dev/null 2>&1; then
     source $(dirname $(gem which colorls))/tab_complete.sh
 else
     echo "colorls not installed, falling back to ls -laFh"
-    echo "sudo apt -y install ruby-rubygems ruby-dev"
-    echo "sudo gem install colorls"
+    echo "sudo -EH apt -y install ruby-rubygems ruby-dev"
+    echo "sudo -EH gem install colorls"
     echo ""
 fi
 
@@ -78,6 +78,6 @@ if [[ -s "/etc/grc.zsh" ]]; then
     source $HOME/.bash/grc.sh
 else
     echo "grc not installed"
-    echo "sudo apt -y install grc"
+    echo "sudo -EH apt -y install grc"
     echo ""
 fi

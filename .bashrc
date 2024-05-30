@@ -71,9 +71,9 @@ OMB_DEFAULT_ALIASES="check"
 # Would you like to use another custom folder than $OSH/custom?
 # OSH_CUSTOM=/path/to/new-custom-folder
 
-# To disable the uses of "sudo" by oh-my-bash, please set "false" to
+# To disable the uses of "sudo -EH" by oh-my-bash, please set "false" to
 # this variable.  The default behavior for the empty value is "true".
-OMB_USE_SUDO=true
+OMB_USE_sudo -EH=true
 
 # To enable/disable display of Python virtualenv and condaenv
 OMB_PROMPT_SHOW_PYTHON_VENV=true # enable
@@ -444,19 +444,19 @@ export SRC_HOME="$HOME/src"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 if ! command -v snap 1>/dev/null 2>&1; then
   echo "Snap not installed"
-  echo "sudo apt -y install snapd"
+  echo "sudo -EH apt -y install snapd"
   echo ""
 fi
 
 if ! command -v node 1>/dev/null 2>&1; then
   echo "nodejs not installed"
-  echo "sudo apt -y install nodejs"
+  echo "sudo -EH apt -y install nodejs"
   echo ""
 fi
 
 if ! command -v pyfiglet 1>/dev/null 2>&1; then
   echo "pyfiglet not installed"
-  echo "sudo -H python3 -m pip install pyfiglet --break-system-packages"
+  echo "sudo -EH python3 -m pip install pyfiglet --break-system-packages"
   # echo "for FONTS in `pyfiglet -l`; do echo $FONTS; pyfiglet $FONTS -f $FONTS; done;"
   echo ""
 fi
@@ -467,7 +467,7 @@ elif command -v bat 1>/dev/null 2>&1; then
   alias bat='bat --theme=TwoDark'
 else
   echo "batcat not installed"
-  echo "sudo apt -y install bat"
+  echo "sudo -EH apt -y install bat"
   echo ""
 fi
 
@@ -478,10 +478,10 @@ elif [[ -s "/etc/profile.d/rvm.sh" ]]; then
   source /etc/profile.d/rvm.sh
 else
   echo "RVM not installed"
-  echo "sudo apt -y install software-properties-common"
-  echo "sudo apt-add-repository -y ppa:rael-gc/rvm"
-  echo "sudo apt update"
-  echo "sudo apt -y install rvm"
+  echo "sudo -EH apt -y install software-properties-common"
+  echo "sudo -EH apt-add-repository -y ppa:rael-gc/rvm"
+  echo "sudo -EH apt update"
+  echo "sudo -EH apt -y install rvm"
   echo "sudo usermod -aG rvm $USER"
   echo "newgrp rvm"
   echo "for older linux distros, see https://rvm.io/rvm/install"
@@ -495,7 +495,7 @@ if [[ -d "$HOME/.rbenv" ]]; then
   eval "$(rbenv init - bash)"
 else
   echo "rbenv not installed"
-  echo "sudo apt -y install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev"
+  echo "sudo -EH apt -y install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev"
   echo "curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash"
   echo ""
 fi
@@ -508,7 +508,7 @@ if [[ -d "$HOME/.pyenv" ]]; then
   fi
 else
   echo "pyenv not installed"
-  echo "sudo apt -y install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git"
+  echo "sudo -EH apt -y install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git"
   echo "curl https://pyenv.run | bash"
   echo ""
 fi
@@ -538,7 +538,7 @@ if [[ -s "$HOME/.cargo/env" ]]; then
   source "$HOME/.cargo/env"
 else
   echo "cargo not installed"
-  echo "sudo apt -y install curl"
+  echo "sudo -EH apt -y install curl"
   echo "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
   echo "rustup update"
   echo "rustc --version"
@@ -549,9 +549,9 @@ if [[ -d "$HOME/.dotnet" ]]; then
   export DOTNET_ROOT="$HOME/.dotnet"
 else
   echo "dotnet not installed"
-  echo "sudo apt install -y dotnet-sdk-8.0"
-  echo "sudo apt install -y aspnetcore-runtime-8.0"
-  echo "sudo apt install -y dotnet-runtime-8.0"
+  echo "sudo -EH apt install -y dotnet-sdk-8.0"
+  echo "sudo -EH apt install -y aspnetcore-runtime-8.0"
+  echo "sudo -EH apt install -y dotnet-runtime-8.0"
   echo "dotnet --version"
   echo "for older linux distros, see https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu"
   echo "wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb"
@@ -758,7 +758,7 @@ if [ -t 1 ] && [ -z "$CT_STARTED" ]; then
     else
       exho "chromaterm not installed"
       echo "apt search python | grep "python.*-full" 2>/dev/null"
-      echo "sudo apt -y install python3 python3-full python3-pip"
+      echo "sudo -EH apt -y install python3 python3-full python3-pip"
       echo "sudo -EH python3 -m pip install -U chromaterm"
       echo ""
     fi

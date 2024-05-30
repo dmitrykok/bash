@@ -1,23 +1,23 @@
 #1705599478
-sudo apt-get install ruby-full
+sudo -EH apt-get install ruby-full
 #1705599496
 ruby --version
 #1705599510
-sudo apt-get install snap
+sudo -EH apt-get install snap
 #1705599523
-sudo snap refresh
+sudo -EH snap refresh
 #1705599553
 snap refresh
 #1705599560
-sudo apt install snapd
+sudo -EH apt install snapd
 #1705599697
 snap refresh
 #1705599704
-sudo snap refresh
+sudo -EH snap refresh
 #1705599721
-sudo snap install ruby --classic
+sudo -EH snap install ruby --classic
 #1705599780
-sudo apt install rbenv
+sudo -EH apt install rbenv
 #1705599793
 rbenv
 #1705599802
