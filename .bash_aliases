@@ -23,8 +23,9 @@ alias binupdate='$HOME/.local/sbin/upgrade.sh && source $HOME/.bashrc'
 
 if [[ -z $__UPGRADED_SCRIPTS__ ]]; then
     export __UPGRADED_SCRIPTS__=1
-    echo "Upgrading scripts"
+    echo "Upgrading Dot Files"
     source $HOME/.bash/upgrade.sh
+    echo "Upgrading CCU Tools"
     source $HOME/.local/sbin/upgrade.sh
 fi
 
