@@ -73,7 +73,7 @@ OMB_DEFAULT_ALIASES="check"
 
 # To disable the uses of "sudo -EH" by oh-my-bash, please set "false" to
 # this variable.  The default behavior for the empty value is "true".
-OMB_USE_sudo -EH=true
+OMB_USE_SUDO=true
 
 # To enable/disable display of Python virtualenv and condaenv
 OMB_PROMPT_SHOW_PYTHON_VENV=true # enable
