@@ -443,6 +443,8 @@ export HTTP_PROXY=$http_proxy
 export HTTPS_PROXY=$http_proxy
 export NO_PROXY=$no_proxy
 
+export SRC_HOME="$HOME/src"
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 if ! command -v snap 1>/dev/null 2>&1; then
   echo "Snap not installed"
@@ -660,9 +662,18 @@ function auto_activate_venv() {
     fi
 }
 
+function activate_complete() {
+    local current_dir="$(pwd -P)"
+    if [[ -s "$current_dir/build-ccu" && -z $__BUILD_CCU_COMPLETE ]]; then
+        echo "Activating complete for: build-ccu"
+        eval "$(_BUILD_CCU_COMPLETE=bash_source $current_dir/build-ccu)"
+        export __BUILD_CCU_COMPLETE=1
+    fi
+}
+
 # Check and set PROMPT_COMMAND
-if [[ ! $PROMPT_COMMAND =~ "auto_activate_venv" || ! $PROMPT_COMMAND =~ "local_history" ]]; then
-  export PROMPT_COMMAND="auto_activate_venv; local_history; $PROMPT_COMMAND"
+if [[ ! $PROMPT_COMMAND =~ "auto_activate_venv" || ! $PROMPT_COMMAND =~ "local_history" || ! $PROMPT_COMMAND =~ "activate_complete" ]]; then
+  export PROMPT_COMMAND="auto_activate_venv; local_history; activate_complete; $PROMPT_COMMAND"
 fi
 
 set_prompt_char() {

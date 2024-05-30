@@ -1,7 +1,0 @@
-function activate_complete() {
-    if [[ -s "/home/mzw7p2/src/ccu/build-ccu" && -z $__BUILD_CCU_COMPLETE ]]; then
-        echo "Activating complete for: build-ccu"
-        eval "$(_BUILD_CCU_COMPLETE=bash_source /home/mzw7p2/src/ccu/build-ccu)"
-        export __BUILD_CCU_COMPLETE=1
-    fi
-}
