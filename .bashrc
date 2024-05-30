@@ -188,39 +188,12 @@ fi
 # alias bashconfig="mate $HOME/.bashrc"
 # alias ohmybash="mate $HOME/.oh-my-bash"
 # Example aliases
-alias bashconfig='source $HOME/.bashrc'
-alias bashupdate='git -C $HOME/.bash/ pull && source $HOME/.bashrc'
-alias ohmybash='source $HOME/.oh-my-bash'
-alias osrelease='hostnamectl'
-alias ohupdate='upgrade_oh_my_bash && source $HOME/.bashrc'
-alias binupdate='git -C $HOME/.local/sbin/ pull'
-
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-# HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-# shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-# HISTSIZE=1000
-# HISTFILESIZE=2000
 
 setterm -linewrap on
 
 shopt -s globstar
 shopt -s histappend
 shopt -s checkwinsize
-
-# HISTCONTROL=ignoreboth
-# HISTSIZE=5000
-# HISTFILESIZE=5000
-# HISTFILE="$HOME/.cache/.bash_history/.bash_history"
-
-# some more ls aliases
-# alias ll='ls -alFh'
-# alias la='ls -A'
-# alias l='ls -CF'
 
 if [ -f $HOME/.bash_aliases ]; then
   source $HOME/.bash_aliases
@@ -235,35 +208,6 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     source /etc/bash_completion
   fi
-fi
-
-convert_zsh_to_bash() {
-    local input_file=$1
-    local output_file=$2
-
-    # Read the input file line by line
-    while IFS= read -r line || [[ -n "$line" ]]; do
-        # Replace Zsh-specific constructs with Bash equivalents
-        line=$(echo "$line" | sed -E 's/\(\((.*)\)\)/\[\[\1\]\]/g')  # Replace (( ... )) with [[ ... ]]
-        line=$(echo "$line" | sed -E 's/\$+commands\[(.*)\]/command -v \1 \&> \/dev\/null/g') # Replace $+commands[cmd] with command -v cmd &> /dev/null
-        line=$(echo "$line" | sed 's/whence /command -v /g')      # Replace whence with command -v
-        line=$(echo "$line" | sed -E 's/for cmd in \$(cmds) ; do/for cmd in "\${cmds[@]}"; do/g') # Replace for cmd in $cmds ; do with for cmd in "${cmds[@]}"; do
-        line=$(echo "$line" | sed -E 's/\[\[ \$\+commands\[(.*)\] \]\]/command -v \1 \&> \/dev\/null/g') # Replace [[ $+commands[cmd] ]] with command -v cmd &> /dev/null
-        echo "$line" >> "$output_file"
-    done < "$input_file"
-}
-
-GRC_ALIASES=true
-if [[ -s "/etc/grc.zsh" ]]; then
-  if [[ ! -s $HOME/.bash/grc.sh ]]; then
-    convert_zsh_to_bash /etc/grc.zsh $HOME/.bash/grc.sh
-    chmod +x $HOME/.bash/grc.sh
-  fi
-  source $HOME/.bash/grc.sh
-else
-  echo "grc not installed"
-  echo "sudo apt -y install grc"
-  echo ""
 fi
 
 lazygit() {
@@ -491,43 +435,9 @@ test -f $HOME/.local/share/lscolors.sh && . "$HOME/.local/share/lscolors.sh"
 # Add this line to use code-insiders instead of code
 command -v code-insiders >/dev/null && export VSCODE=code-insiders
 command -v code >/dev/null && export VSCODE=code
-command -v vim >/dev/null && alias vi='vim'
 
 # Configure color-scheme
 COLOR_SCHEME=dark # dark/light
-
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-
-alias ll='ls -laFh'
-alias la='ls -A'
-alias l='ls -CF'
-
-if command -v colorls 1>/dev/null 2>&1; then
-  # Get colorls version
-  COLORLS_VERSION=$(colorls --version)
-
-  # Check if the version is 1.5.0
-  if [ "$COLORLS_VERSION" = "1.5.0" ]; then
-    alias ll='colorls -laA --sd --gs --df --report=long'
-    alias la='colorls -laA --sd --gs --df --report=long -1'
-    alias ls='colorls -aA --sd --df'
-    alias l='colorls --sd --df'
-  else
-    alias ll='colorls -laA --sd --gs --report=long'
-    alias la='colorls -laA --sd --gs --report=long -1'
-    alias ls='colorls -aA --sd'
-    alias l='colorls --sd'
-  fi
-
-  source $(dirname $(gem which colorls))/tab_complete.sh
-else
-  echo "colorls not installed, falling back to ls -laFh"
-  echo "sudo apt -y install ruby-rubygems ruby-dev"
-  echo "sudo gem install colorls"
-  echo ""
-fi
 
 export HTTP_PROXY=$http_proxy
 export HTTPS_PROXY=$http_proxy
@@ -536,13 +446,13 @@ export NO_PROXY=$no_proxy
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 if ! command -v snap 1>/dev/null 2>&1; then
   echo "Snap not installed"
-  echo "sudo apt install snapd"
+  echo "sudo apt -y install snapd"
   echo ""
 fi
 
 if ! command -v node 1>/dev/null 2>&1; then
   echo "nodejs not installed"
-  echo "sudo apt install nodejs"
+  echo "sudo apt -y install nodejs"
   echo ""
 fi
 
@@ -550,7 +460,7 @@ if command -v batcat 1>/dev/null 2>&1; then
   alias bat='batcat --theme=TwoDark'
 else
   echo "batcat not installed"
-  echo "sudo apt install bat"
+  echo "sudo apt -y install bat"
   echo ""
 fi
 
@@ -561,10 +471,10 @@ elif [[ -s "/etc/profile.d/rvm.sh" ]]; then
   source /etc/profile.d/rvm.sh
 else
   echo "RVM not installed"
-  echo "sudo apt install software-properties-common"
+  echo "sudo apt -y install software-properties-common"
   echo "sudo apt-add-repository -y ppa:rael-gc/rvm"
   echo "sudo apt update"
-  echo "sudo apt install rvm"
+  echo "sudo apt -y install rvm"
   echo "sudo usermod -aG rvm $USER"
   echo "newgrp rvm"
   echo "for older linux distros, see https://rvm.io/rvm/install"
@@ -620,7 +530,7 @@ if [[ -s "$HOME/.cargo/env" ]]; then
   source "$HOME/.cargo/env"
 else
   echo "cargo not installed"
-  echo "sudo apt install curl"
+  echo "sudo apt -y install curl"
   echo "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
   echo "rustup update"
   echo "rustc --version"
@@ -663,6 +573,12 @@ fi
 
 export TMOUT=
 
+# This code snippet defines a function called local_history in Bash.
+# It saves the current directory, updates the recorded directory,
+# appends the current session's history to a history file,
+# clears the session's history,
+# and sets the history file to a custom location based on the current directory,
+# and then reloads the history from the new history file.
 shopt -s histappend
 HISTCONTROL=ignoreboth
 HISTSIZE=5000
@@ -672,12 +588,6 @@ mkdir -p "$HOME/.cache/.bash_history/"
 HISTFILE="$HOME/.cache/.bash_history/.${__current_dir//[\/]/_}.bash_history"
 _cust_hist_stock_histfile=$HISTFILE
 _cust_hist_opwd="$(pwd -P)"
-# This code snippet defines a function called local_history in Bash.
-# It saves the current directory, updates the recorded directory,
-# appends the current session's history to a history file,
-# clears the session's history,
-# and sets the history file to a custom location based on the current directory,
-# and then reloads the history from the new history file.
 function local_history() {
   # Get the current directory and store it in current_dir
   local current_dir="$(pwd -P)"
