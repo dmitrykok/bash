@@ -32,11 +32,11 @@ function _dot_files_bush_upgrade {
     if ! command git --git-dir="$HOME/.bash/.git" --work-tree="$HOME/.bash" pull --rebase --stat origin master; then
         # In case it enters the rebasing mode
         printf '%s\n' "Dot Files for Bash: running 'git rebase --abort'..."
-        command git --git-dir="$OSH/.git" --work-tree="$OSH" rebase --abort
+        command git --git-dir="$HOME/.bash/.git" --work-tree="$HOME/.bash" rebase --abort
         printf "${RED}%s${NORMAL}\n" \
             'There was an error updating.' \
-            "If you have uncommited changes in '$BOLD$OSH$NORMAL$RED', please commit, stash or discard them and retry updating." \
-            "If you have your own local commits in '$BOLD$OSH$NORMAL$RED' that conflict with the upstream changes, please resolve conflicts and merge the upstream manually."
+            "If you have uncommited changes in '$BOLD$HOME/.bash$NORMAL$RED', please commit, stash or discard them and retry updating." \
+            "If you have your own local commits in '$BOLD$HOME/.bash$NORMAL$RED' that conflict with the upstream changes, please resolve conflicts and merge the upstream manually."
         return 1
     fi
 
