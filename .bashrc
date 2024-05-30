@@ -633,6 +633,10 @@ function auto_activate_venv() {
     # If a virtual environment directory is found
     if [[ -n "$venv_dir" ]]; then
         # Activate the virtual environment if no virtual environment is currently active or if a different one is active
+        # echo "venv_dir: $venv_dir"
+        # echo "current_dir: $current_dir"
+        # echo "VIRTUAL_ENV: $VIRTUAL_ENV"
+        # echo "__VIRTUAL_ENV: $__VIRTUAL_ENV"
         if [[ -z "$__VIRTUAL_ENV" || "$VIRTUAL_ENV" != "$venv_dir" ]]; then
             # Deactivate the old virtual environment if a different one is currently active
             if [[ -n "$VIRTUAL_ENV" && "$VIRTUAL_ENV" != "$venv_dir" ]]; then
@@ -644,6 +648,7 @@ function auto_activate_venv() {
             export __VIRTUAL_ENV="$venv_dir"
             echo "Activating new virtual environment: $venv_dir"
             source "$venv_dir/bin/activate"
+            which python
             python -V
         fi
     # If no virtual environment directory is found and a virtual environment is currently active
@@ -655,8 +660,8 @@ function auto_activate_venv() {
     fi
 }
 
-if [[ -z "$__PROMPT_COMMAND_ADDED" ]]; then
-  export __PROMPT_COMMAND_ADDED=1
+# Check and set PROMPT_COMMAND
+if [[ ! $PROMPT_COMMAND =~ "auto_activate_venv" || ! $PROMPT_COMMAND =~ "local_history" ]]; then
   export PROMPT_COMMAND="auto_activate_venv; local_history; $PROMPT_COMMAND"
 fi
 
