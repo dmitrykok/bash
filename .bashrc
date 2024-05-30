@@ -195,10 +195,6 @@ shopt -s globstar
 shopt -s histappend
 shopt -s checkwinsize
 
-if [ -f $HOME/.bash_aliases ]; then
-  source $HOME/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -579,7 +575,9 @@ fi
 # PS3="└"
 # PS1=${PS1//"└─▪"/"└"}
 
-# source /home/mzw7p2/.config/broot/launcher/bash/br
+if [ -f $HOME/.bash_aliases ]; then
+  source $HOME/.bash_aliases
+fi
 
 export TMOUT=
 
