@@ -15,11 +15,18 @@ convert_zsh_to_bash() {
 }
 
 alias bashconfig='source $HOME/.bashrc'
-alias bashupdate='git -C $HOME/.bash/ pull && source $HOME/.bashrc'
+alias bashupdate='$HOME/.bash/upgrade.sh && source $HOME/.bashrc'
 alias ohmybash='source $HOME/.oh-my-bash'
 alias osrelease='hostnamectl'
 alias ohupdate='upgrade_oh_my_bash && source $HOME/.bashrc'
-alias binupdate='git -C $HOME/.local/sbin/ pull'
+alias binupdate='$HOME/.local/sbin/upgrade.sh && source $HOME/.bashrc'
+
+if [[ -z $__UPGRADED_SCRIPTS__ ]]; then
+    export __UPGRADED_SCRIPTS__=1
+    echo "Upgrading scripts"
+    source $HOME/.bash/upgrade.sh
+    source $HOME/.local/sbin/upgrade.sh
+fi
 
 if command -v vim 1>/dev/null 2>&1; then
     alias vi='vim'

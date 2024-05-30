@@ -532,6 +532,7 @@ if [[ -d "$HOME/.local/sbin" ]]; then
   export PATH="$HOME/.local/sbin:$PATH"
 else
   echo "local sbin not installed"
+  echo "git clone ssh://git@bitbucket.ultracruise.gm.com/~mzw7p2/ccu-bsp-tools.git $HOME/.local/sbin && source $HOME/.bashrc"
   echo ""
 fi
 
