@@ -59,10 +59,6 @@ function _dot_files_bush_upgrade {
     fi
     printf "${BLUE}%s\n" "Hooray! Dot Files for Bash has been updated and/or is at the current version."
     printf "${BLUE}${BOLD}%s${NORMAL}\n" "To keep up on the latest news and updates, follow us on Git: https://bitbucket.ultracruise.gm.com/scm/~mzw7p2/bash"
-    if [[ $- == *i* ]]; then
-        # shellcheck disable=SC1090
-        source ~/.bashrc
-    fi
     $HOME/.bash/setup.sh
 }
 _dot_files_bush_upgrade
