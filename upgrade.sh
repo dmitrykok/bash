@@ -52,7 +52,7 @@ function _dot_files_bush_upgrade {
         return 1
     fi
 
-    printf '%s\n' "$GREEN"
+    # printf '%s\n' "$GREEN"
     # shellcheck disable=SC1003,SC2016
     if command -v pyfiglet 1>/dev/null 2>&1; then
         pyfiglet -f poison -w 80 -c GREEN "Dot Files for Bash"
