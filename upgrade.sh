@@ -55,7 +55,7 @@ function _dot_files_bush_upgrade {
     printf '%s\n' "$GREEN"
     # shellcheck disable=SC1003,SC2016
     if command -v pyfiglet 1>/dev/null 2>&1; then
-        pyfiglet -f ansi_shadow -w 80 -c green "Dot Files for Bash"
+        pyfiglet -f poison -w 80 -c GREEN "Dot Files for Bash"
     fi
     printf "${BLUE}%s\n" "Hooray! Dot Files for Bash has been updated and/or is at the current version."
     printf "${BLUE}${BOLD}%s${NORMAL}\n" "To keep up on the latest news and updates, follow us on Git: https://bitbucket.ultracruise.gm.com/scm/~mzw7p2/bash"
