@@ -63,5 +63,6 @@ function _dot_files_bush_upgrade {
         # shellcheck disable=SC1090
         source ~/.bashrc
     fi
+    $HOME/.bash/setup.sh
 }
 _dot_files_bush_upgrade
