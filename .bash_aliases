@@ -22,8 +22,8 @@ alias ohupdate='upgrade_oh_my_bash && source $HOME/.bashrc'
 alias ohmybash='source $HOME/.oh-my-bash'
 alias osrelease='hostnamectl'
 alias cleanlocks='rm -f $HOME/.dot_files_bush_upgrade.lock $HOME/.dot_ccu_tools_upgrade.lock'
-alias bashupdate-f='git -C $HOME/.bash pull && source $HOME/.bashrc'
-alias binupdate-f='git -C $HOME/.local/sbin pull && source $HOME/.bashrc'
+alias bashupdate-f='git -C $HOME/.bash pull && rm -f $HOME/.dot_files_bush_upgrade.lock $HOME/.dot_ccu_tools_upgrade.lock && source $HOME/.bashrc'
+alias binupdate-f='git -C $HOME/.local/sbin pull && rm -f $HOME/.dot_files_bush_upgrade.lock $HOME/.dot_ccu_tools_upgrade.lock && source $HOME/.bashrc'
 
 if [[ -z $__UPGRADED_SCRIPTS__ ]]; then
     export __UPGRADED_SCRIPTS__=1
