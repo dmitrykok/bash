@@ -8,4 +8,3 @@ ln -sf .bash/.bash_logout ~/.bash_logout
 ln -sf .bash/.bash_profile ~/.bash_profile
 ln -sf .bash/.bashrc ~/.bashrc
 ln -sf .bash/.profile ~/.profile
-source ~/.bashrc

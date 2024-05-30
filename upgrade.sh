@@ -5,7 +5,7 @@ function _dot_files_bush_upgrade {
     # supports them.
     LOCK_FILE="$HOME/.dot_files_bush_upgrade.lock"
     if [[ -f "$LOCK_FILE" ]]; then
-        return
+        return 0
     fi
 
     touch "$LOCK_FILE"
@@ -18,7 +18,8 @@ function _dot_files_bush_upgrade {
     REMOTE=$(git --git-dir="$HOME/.bash/.git" --work-tree="$HOME/.bash" rev-parse @{u})
 
     if [ "$LOCAL" = "$REMOTE" ]; then
-        return
+        rm -f "$LOCK_FILE"
+        return 0
     fi
 
     local ncolors=
@@ -68,5 +69,6 @@ function _dot_files_bush_upgrade {
     printf "${BLUE}${BOLD}%s${NORMAL}\n" "To keep up on the latest news and updates, follow us on Git: https://bitbucket.ultracruise.gm.com/scm/~mzw7p2/bash"
     rm -f "$LOCK_FILE"
     $HOME/.bash/setup.sh
+    return 0
 }
 _dot_files_bush_upgrade

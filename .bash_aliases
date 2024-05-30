@@ -16,10 +16,14 @@ convert_zsh_to_bash() {
 
 alias bashconfig='source $HOME/.bashrc'
 alias bashupdate='$HOME/.bash/upgrade.sh && source $HOME/.bashrc'
+alias bassetup='$HOME/.bash/setup.sh && source $HOME/.bashrc'
+alias binupdate='$HOME/.local/sbin/upgrade.sh && source $HOME/.bashrc'
+alias ohupdate='upgrade_oh_my_bash && source $HOME/.bashrc'
 alias ohmybash='source $HOME/.oh-my-bash'
 alias osrelease='hostnamectl'
-alias ohupdate='upgrade_oh_my_bash && source $HOME/.bashrc'
-alias binupdate='$HOME/.local/sbin/upgrade.sh && source $HOME/.bashrc'
+alias cleanlocks='rm -f $HOME/.dot_files_bush_upgrade.lock $HOME/.dot_ccu_tools_upgrade.lock'
+alias bashupdate-f='git -C $HOME/.bash pull && source $HOME/.bashrc'
+alias binupdate-f='git -C $HOME/.local/sbin pull && source $HOME/.bashrc'
 
 if [[ -z $__UPGRADED_SCRIPTS__ ]]; then
     export __UPGRADED_SCRIPTS__=1
