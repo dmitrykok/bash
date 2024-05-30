@@ -458,6 +458,13 @@ if ! command -v node 1>/dev/null 2>&1; then
   echo ""
 fi
 
+if ! command -v pyfiglet 1>/dev/null 2>&1; then
+  echo "pyfiglet not installed"
+  echo "sudo -H python3 -m pip install pyfiglet --break-system-packages"
+  # echo "for FONTS in `pyfiglet -l`; do echo $FONTS; pyfiglet $FONTS -f $FONTS; done;"
+  echo ""
+fi
+
 if command -v batcat 1>/dev/null 2>&1; then
   alias bat='batcat --theme=TwoDark'
 else
