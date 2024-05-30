@@ -40,7 +40,7 @@ function _dot_files_bush_upgrade {
         return 1
     fi
 
-    printf '%s' "$GREEN"
+    printf '%s\n' "$GREEN"
     # shellcheck disable=SC1003,SC2016
     if command -v pyfiglet 1>/dev/null 2>&1; then
         pyfiglet -f ansi_shadow -w 80 -c green "Dot Files for Bash"
