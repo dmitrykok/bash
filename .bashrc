@@ -546,8 +546,8 @@ if ! command -v node 1>/dev/null 2>&1; then
   echo ""
 fi
 
-if command -v bat 1>/dev/null 2>&1; then
-  alias bat='bat --theme=TwoDark'
+if command -v batcat 1>/dev/null 2>&1; then
+  alias bat='batcat --theme=TwoDark'
 else
   echo "batcat not installed"
   echo "sudo apt install bat"
