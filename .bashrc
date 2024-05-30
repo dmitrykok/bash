@@ -546,6 +546,14 @@ if ! command -v node 1>/dev/null 2>&1; then
   echo ""
 fi
 
+if command -v bat 1>/dev/null 2>&1; then
+  alias bat='bat --theme=TwoDark'
+else
+  echo "batcat not installed"
+  echo "sudo apt install bat"
+  echo ""
+fi
+
 if [[ -d "$HOME/.rvm" ]]; then
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
   export PATH="$PATH:$HOME/.rvm/bin"
