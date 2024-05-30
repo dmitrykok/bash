@@ -577,9 +577,14 @@ fi
 
 if [[ -d "$HOME/go/bin" ]]; then
   export PATH="$HOME/go/bin:$PATH"
+elif [[ -d "/usr/local/go/bin" ]]; then
+  export PATH="$PATH:/usr/local/go/bin"
 else
   echo "go not installed"
   echo "go to: https://go.dev/doc/install"
+  echo "wget https://go.dev/dl/go1.22.3.linux-amd64.tar.gz"
+  echo "sudo tar -C /usr/local -xvf go1.22.3.linux-amd64.tar.gz"
+  echo "rm -f go1.22.3.linux-amd64.tar.gz"
   echo ""
 fi
 
