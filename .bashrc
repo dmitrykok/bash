@@ -86,16 +86,19 @@ OMB_PROMPT_SHOW_PYTHON_VENV=true # enable
 completions=(
   git
   composer
+  bundler
   ssh
   crc
   defaults
   dirs
   docker
+  rake
   gem
   makefile
   nvm
   pip3
   pip
+  npm
   system
   tmux
 )
