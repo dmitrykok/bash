@@ -54,7 +54,7 @@ if command -v colorls 1>/dev/null 2>&1; then
     COLORLS_VERSION=$(colorls --version)
 
     # Check if the version is 1.5.0
-    if [ "$COLORLS_VERSION" = "1.5.0" ]; then
+    if [[ "$COLORLS_VERSION" = "1.5.0" || "$COLORLS_VERSION" = "1.5.1" ]]; then
         alias ll='colorls -laA --sd --gs --df --report=long'
         alias la='colorls -laA --sd --gs --df --report=long -1'
         alias ls='colorls -aA --sd --df'
