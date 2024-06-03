@@ -64,6 +64,11 @@ if command -v colorls 1>/dev/null 2>&1; then
         alias la='colorls -laA --sd --gs --report=long -1'
         alias ls='colorls -aA --sd'
         alias l='colorls --sd'
+        echo "colorls not installed, falling back to ls -laFh, get latest colorls"
+        echo "wget https://github.com/dmitrykok/hpricot/blob/master/pkg/hpricot-0.8.321.gem"
+        echo "wget https://github.com/dmitrykok/colorls/blob/main/pkg/colorls-1.5.1.gem"
+        echo "sudo -EH gem install hpricot-0.8.321.gem"
+        echo "sudo -EH gem install colorls-1.5.1.gem"
     fi
 
     source $(dirname $(gem which colorls))/tab_complete.sh
@@ -71,6 +76,11 @@ else
     echo "colorls not installed, falling back to ls -laFh"
     echo "sudo -EH apt -y install ruby-rubygems ruby-dev"
     echo "sudo -EH gem install colorls"
+    echo "wget https://github.com/dmitrykok/hpricot/blob/master/pkg/hpricot-0.8.321.gem"
+    echo "wget https://github.com/dmitrykok/colorls/blob/main/pkg/colorls-1.5.1.gem"
+    echo "sudo -EH gem install hpricot-0.8.321.gem"
+    echo "sudo -EH gem install colorls-1.5.1.gem"
+    echo "rm -f hpricot-0.8.321.gem colorls-1.5.1.gem"
     echo ""
 fi
 
